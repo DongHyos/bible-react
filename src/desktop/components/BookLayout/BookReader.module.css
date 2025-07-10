@@ -1,0 +1,381 @@
+/* BookReader.tsx Component Styles */
+.container {
+  /* background: '#F8F6F0'; */ /* Syntax Error & Unnecessary background */
+  /* color: '#2D2D2D'; */     /* Syntax Error */
+  
+  width: 100%;
+  height: 100%;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #2D2D2D;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* headerWrapper를 중앙으로 */
+  padding: 0 32px;
+  height: 64px;
+  border-bottom: 1.5px solid #e0e0e0;
+  background: rgba(248, 246, 240, 0.96);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-sizing: border-box;
+}
+
+.headerWrapper {
+  width: 100%;
+  max-width: 1200px; /* 메인 컨텐츠와 동일한 max-width */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.titleIcon {
+  font-size: 26px;
+}
+
+.headerControls {
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  width: 220px;
+  height: 40px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: 1px solid #e0e0e0;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  margin-right: 16px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #1E4B8B;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 18px;
+}
+
+/* Main Content */
+.mainContent {
+  /* max-width: 1200px; */ /* 부모는 전체 너비를 차지하도록 max-width 제거 */
+  width: 100%;
+  margin: 0; /* 마진 제거 */
+  /* padding: 48px 32px 32px; */ /* 화면을 꽉 채우기 위해 제거 */
+  flex: 1; 
+  overflow: hidden; 
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+  /* align-items: center; */ /* 화면을 꽉 채우기 위해 제거 */
+}
+
+.bookLayout {
+  display: flex;
+  width: 100%;
+  /* max-width: 1200px; */ /* 화면을 꽉 채우기 위해 제거 */
+  /* border-radius: 8px;  */ /* 화면을 꽉 채우기 위해 제거 */
+  /* box-shadow: 0 8px 30px rgba(0,0,0,0.15);  */ /* 화면을 꽉 채우기 위해 제거 */
+  /* overflow: hidden;  */ /* 화면을 꽉 채우기 위해 제거 */
+  flex: 1; /* 남는 수직 공간을 모두 차지 */
+  min-height: 0; /* flex 자식의 overflow-y 스크롤을 위해 필요 */
+  height: 100%;
+}
+
+.page {
+  width: 50%; /* 각 페이지가 절반씩 차지 */
+  background: #FFFFFF;
+  padding: 32px;
+  overflow: hidden; /* 스크롤바 생성 방지 */
+  box-sizing: border-box;
+  display: flex; /* flex 컨테이너로 변경 */
+  flex-direction: column; /* 자식 요소를 세로로 쌓음 */
+  min-height: 0;
+  height: 100%;
+}
+
+.page:first-child {
+  /* 페이지 사이의 구분선을 더 어둡고 명확하게 수정 */
+  border-right: 1px solid #D1D5DB;
+}
+
+.pageTitle {
+  font-family: 'Noto Serif KR', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eee;
+  flex-shrink: 0; /* 제목이 줄어들지 않도록 설정 */
+}
+
+.versesContainer {
+  line-height: 1.8;
+  font-size: 16px;
+  font-family: 'Noto Serif KR', sans-serif;
+  letter-spacing: 0.5px;
+  flex-grow: 1; /* 남은 공간을 모두 채우도록 설정 */
+  overflow-y: auto; /* 내용이 넘칠 경우 스크롤바 표시 */
+  min-height: 0; /* flex 환경에서 overflow가 올바르게 작동하도록 설정 */
+}
+
+.verse {
+  margin-bottom: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.verse.selected {
+  background: rgba(255, 225, 53, 0.5);
+}
+
+.verseNumber {
+  color: #1E4B8B;
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+/* Right Page Tabs */
+.tabContainer {
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 16px;
+  margin-bottom: 24px; /* 모든 탭 컨텐츠에 일관된 상단 여백을 위해 복원 */
+}
+
+.tabContent {
+  flex: 1 1 0;
+  min-height: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 24px;
+}
+
+.tabButton {
+  background: transparent;
+  color: #666;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-top: -12px; /* 상단 여백만 다른 탭보다 12px 줄임 */
+}
+
+.tabButton.active {
+  background: #1E4B8B;
+  color: #fff;
+}
+
+.tabContentTitle {
+  font-family: 'Noto Serif KR', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.infoBox {
+  background: #f9f9f9;
+  padding: 16px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.infoBox p {
+  margin: 0;
+}
+
+.placeholderText {
+  color: #868e96;
+  font-style: italic;
+}
+
+/* Navigation */
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 0; /* 페이지 영역과의 간격 조정 */
+  flex-shrink: 0; /* 수축 방지 */
+  background: #f9f9f9; /* 배경색 추가하여 구분 */
+  border-top: 1px solid #e0e0e0; /* 상단 구분선 추가 */
+}
+
+.navButton {
+  background-color: #4A5568;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.navButton:hover:not(:disabled) {
+  background-color: #2D3748;
+}
+
+.navButton:disabled {
+  background-color: #E2E8F0;
+  color: #A0AEC0;
+  cursor: not-allowed;
+}
+
+.navInfo {
+  font-weight: 600;
+  font-size: 16px;
+  min-width: 120px;
+  text-align: center;
+}
+
+.recentVersesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  /* max-height: 400px; */ /* 부모 컨테이너가 스크롤을 담당하도록 제거 */
+  /* overflow-y: auto; */   /* 이중 스크롤바 문제 해결을 위해 제거 */
+}
+
+.recentVerseItem {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.recentVerseItem:last-child {
+  border-bottom: none;
+}
+
+.recentVerseItem:hover {
+  background-color: #f5f5f5;
+}
+
+.recentVerseRef {
+  font-weight: 600;
+  color: #1E4B8B;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.recentVerseText {
+  margin: 0;
+  color: #555;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.infoBox {
+  background-color: #f9f9f9;
+  border-left: 4px solid #1E4B8B;
+}
+
+/* --- 오늘의 말씀 탭 스타일 --- */
+.todayVerseContainer {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-top: -12px; /* 상단 여백만 다른 탭보다 12px 줄임 */
+}
+
+.todayVerseTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #2c5282; /* Bluish gray */
+  margin: 0 0 12px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e2e8f0; /* Lighter border */
+  display: flex;
+  align-items: center;
+}
+
+.todayVerseTitleIcon {
+  margin-right: 10px;
+  font-size: 24px;
+  color: #3182ce; /* Blue */
+}
+
+.todayVerseRef {
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  color: #2b6cb0; /* Darker Blue */
+  margin: 0;
+  transition: color 0.2s;
+}
+
+.todayVerseRef:hover {
+  color: #1a365d; /* Even Darker Blue */
+  text-decoration: underline;
+}
+
+.todayVerseTextContainer {
+  margin: 16px 0;
+}
+
+.todayVerseItem {
+  margin: 0 0 12px 0; /* 각 절 사이의 간격 */
+  padding: 12px 16px;
+  background-color: #fff;
+  border-left: 4px solid #a0aec0; /* Gray border */
+  font-style: italic;
+  font-family: 'Noto Serif KR', sans-serif; /* 본문과 동일한 폰트 적용 */
+  color: #4a5568; /* Dark Gray */
+  line-height: 1.7;
+  border-radius: 0 4px 4px 0;
+}
+
+.todayVerseItem:last-child {
+  margin-bottom: 0;
+}
+
+.todayVerseNumber {
+  color: #1E4B8B;
+  font-weight: 600;
+  margin-right: 8px;
+  font-style: normal; /* 숫자에는 이탤릭체 미적용 */
+}
+
+.todayVerseDesc {
+  margin-top: 16px;
+  color: #718096; /* Lighter Gray */
+  font-size: 14px;
+  line-height: 1.6;
+} 

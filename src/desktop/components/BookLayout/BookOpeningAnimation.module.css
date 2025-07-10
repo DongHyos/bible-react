@@ -1,0 +1,392 @@
+.bookAnimationContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  min-width: 100vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  /* 기존 그라데이션 배경 제거 */
+  /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+  
+  /* 새로운 디자인 시스템의 배경색과 텍스트 색상 적용 */
+  background: #F8F6F0;
+  color: #2D2D2D;
+  
+  font-family: 'Noto Sans KR', sans-serif;
+  perspective: 1200px;
+}
+
+.book {
+  position: relative;
+  width: 28vw;
+  max-width: 850px;
+  aspect-ratio: 2/3;
+  min-width: 320px;
+  min-height: 480px;
+  max-height: 70vh;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-sizing: border-box;
+}
+
+.bookOpen {
+  /* transform: rotateY(-20deg) scale(1.2); */
+  transform: scale(1.2); /* 기울임 제거, 확대만 적용 */
+  width: 90vw;
+  min-width: 900px;
+}
+
+.bookCover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.bookOpen .bookCover {
+  display: none;
+}
+
+.bookSpine {
+  position: absolute;
+  left: -15px;
+  width: 15px;
+  height: 100%;
+  background: linear-gradient(to bottom, #8B4513, #A0522D);
+  transform: rotateY(90deg);
+  transform-origin: right center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #FFD700;
+  font-size: 12px;
+  font-weight: bold;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+.bookFront {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 50%, #CD853F 100%);
+  border: 3px solid #654321;
+  border-radius: 8px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(255, 215, 0, 0.1);
+  backface-visibility: hidden;
+}
+
+.bookCoverTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #FFD700;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.bookCoverTitle h2 {
+  font-size: 2.5rem;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bookCoverTitle p {
+  font-size: 1rem;
+  margin: 0 0 20px 0;
+  opacity: 0.9;
+}
+
+.bookCoverIcon {
+  font-size: 3rem;
+  margin-top: 20px;
+}
+
+.bookPages,
+.bookPagesOpen {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  gap: 2%;
+  overflow-x: hidden;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+  background: #FEFEFE;
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.bookPagesOpen {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.bookPage {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 50%;
+  max-width: 50%;
+  height: 100%;
+  min-height: 0;
+  max-height: 100%;
+  box-sizing: border-box;
+  padding: 30px 25px;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', Georgia, 'Times New Roman', serif;
+}
+
+.bookPageLeft {
+  border-right: 2px solid #E0E0E0;
+}
+
+.pageHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #1E4B8B;
+}
+
+.pageHeader h3 {
+  margin: 0;
+  color: #1E4B8B;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.pageCount {
+  background: #1E4B8B;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.pageContent {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.bookCategory {
+  margin-bottom: 16px;
+  padding: 16px 0 8px 0;
+  font-family: 'Noto Serif KR', 'Nanum Myeongjo', Georgia, 'Times New Roman', serif;
+}
+
+.bookCategory h4 {
+  background: #e3eafc;
+  border-left: 6px solid #1E4B8B;
+  color: #1E4B8B;
+  font-size: 1.15rem;
+  font-weight: bold;
+  padding: 10px 18px;
+  margin-bottom: 12px;
+  margin-top: 10px;
+  border-radius: 8px 0 0 8px;
+  letter-spacing: 0.5px;
+}
+
+.chapterGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.bookItem {
+  background: #f8faff;
+  border: 1px solid #e3eafc;
+  border-radius: 6px;
+  padding: 8px 16px;
+  color: #1E4B8B;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.15s, color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.bookItem:hover {
+  background: #e3eafc;
+  color: #17408b;
+  box-shadow: 0 2px 8px rgba(30,75,139,0.08);
+  transform: translateY(-2px);
+}
+
+.bookItemTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2D2D2D;
+}
+
+.bookItemChapters {
+  font-size: 0.8rem;
+  color: #666;
+  background: #E9ECEF;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.clickHint {
+  margin-top: 30px;
+  text-align: center;
+  animation: pulse 2s infinite;
+}
+
+.clickHint p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.closeButton {
+  position: fixed;
+  top: 30px;
+  right: 3vw;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@media (max-width: 1024px) {
+  .book {
+    width: 80vw;
+    max-width: 850px;
+    min-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .book {
+    width: 450px;
+    height: 350px;
+  }
+  .bookPages {
+    /* flex-direction: column; */
+    height: auto;
+    max-height: 80vh;
+  }
+  .bookPage {
+    padding: 20px 15px;
+  }
+  .pageHeader h3 {
+    font-size: 1.1rem;
+  }
+  .closeButton {
+    top: 20px;
+    right: 20px;
+    padding: 10px 16px;
+  }
+}
+
+.pageDivider {
+  border: none;
+  border-top: 2px solid #e0e0e0;
+  margin: 16px 0 24px 0;
+}
+
+.bookFlat {
+  width: 90vw;
+  max-width: 90vw;
+  min-width: 320px;
+  min-height: 480px;
+  height: 90vh;
+  max-height: 90vh;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  border-radius: 12px;
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.6s, border-radius 0.6s, height 0.6s;
+  position: relative;
+  /* display: flex; */ /* BookReader라는 단일 자식만 있으므로 flex 불필요 */
+  /* flex-direction: row; */
+  overflow: hidden;
+}
+
+.bookFlatEnter {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.5s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.bookFlatEnterActive {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* 
+  .bookFlatExit 와 .bookFlatExitActive 는 CSSTransition group 사용 시의 패턴.
+  여기서는 JS로 직접 클래스를 제어하므로, .bookFlatExit 클래스 하나에
+  퇴장 애니메이션의 최종 상태를 정의합니다.
+  기존 .bookFlat 에 transition이 정의되어 있으므로 애니메이션이 적용됩니다.
+*/
+.bookFlatExit {
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+/* 커스텀 스크롤바 (Webkit) */
+.bookAnimationContainer::-webkit-scrollbar,
+.bookPages::-webkit-scrollbar,
+.bookPage::-webkit-scrollbar {
+  width: 8px;
+  background: transparent;
+}
+.bookAnimationContainer::-webkit-scrollbar-thumb,
+.bookPages::-webkit-scrollbar-thumb,
+.bookPage::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 6px;
+  border: 2px solid #f5f7fa;
+}
+.bookAnimationContainer::-webkit-scrollbar-track,
+.bookPages::-webkit-scrollbar-track,
+.bookPage::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bookPage.hideScrollbar {
+  overflow-y: hidden !important;
+}
+
+.bookPage.showScrollbar {
+  overflow-y: auto !important;
+} 

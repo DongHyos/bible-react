@@ -1,0 +1,199 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: 100%;
+  flex: 1 1 0;
+  min-height: 0;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 16px;
+}
+
+.title {
+  font-family: 'Noto Serif KR', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin: 0;
+}
+
+.showMoreLink {
+  background: none;
+  border: none;
+  color: #1E4B8B;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.errorText {
+  color: #e53e3e;
+}
+
+.sermonList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sermonLink {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.flex3 {
+  flex: 1 1 0;
+  min-height: 0;
+}
+.flex2 {
+  flex: 0 0 66.6666%;
+  min-height: 0;
+}
+.flex1 {
+  flex: 0 0 33.3333%;
+  min-height: 0;
+}
+
+.sermonItem {
+  min-height: 80px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex: 1 1 0;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(30, 40, 90, 0.08);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s, border-color 0.2s, background 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+  padding: clamp(8px, 2vw, 20px);
+  gap: clamp(8px, 2vw, 16px);
+  overflow: hidden;
+}
+
+.sermonItem:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.sermonItem:hover {
+  background: #f5faff;
+  box-shadow: 0 8px 24px rgba(30, 75, 139, 0.22), 0 2px 8px rgba(0,0,0,0.10);
+  border-color: #b6d4fe;
+  transform: translateY(-2px);
+}
+
+.sermonThumbnail {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(30, 75, 139, 0.15), 0 1.5px 4px rgba(0,0,0,0.08);
+  border: none;
+  background: none;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.sermonItem:hover .sermonThumbnail {
+  transform: scale(1.05);
+  box-shadow: 0 8px 24px rgba(30, 75, 139, 0.22), 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.sermonInfo {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 16px;
+}
+
+.sermonTitle {
+  font-weight: 700;
+  color: #1E4B8B;
+  margin: 0 0 2px 0;
+  font-size: clamp(14px, 2vw, 18px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sermonMeta {
+  color: #6b7280;
+  font-size: clamp(12px, 1.5vw, 14px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 스켈레톤 UI */
+.skeletonItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  background-color: #f9f9f9;
+  padding: 12px;
+  border-radius: 8px;
+  height: 84px;
+  box-sizing: border-box;
+}
+
+.skeletonThumbnail {
+  width: 80px;
+  height: 60px;
+  border-radius: 6px;
+  background-color: #e2e8f0;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeletonText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.skeletonLine {
+  height: 16px;
+  background-color: #e2e8f0;
+  border-radius: 4px;
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.skeletonLine.short {
+  width: 60%;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.filled1 {
+  height: 33.3333%;
+}
+.filled2 {
+  height: 66.6666%;
+}
+.filled3 {
+  height: 100%;
+} 
